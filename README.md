@@ -35,5 +35,10 @@ These aggregations provide insights into the types of edits being made, the freq
 ### OpenSearch Dashboards
 ![OpenSearch Dashboards](images/Opensearch.PNG)
 
-## Note
-This repository does not include the setup steps for installing Kafdrop UI, OpenSearch, or preparing the Python environment. These were configured prior to coding to ensure the Python environment, Kafdrop, and OpenSearch were up and running.
+## Additional Notes
+- **Kafka and Python Integration**: I used Python along with the Kafka connector to implement these projects.
+- **Kafdrop UI**: Kafdrop provided an easy-to-use interface to view Kafka topics, partitions, and messages.
+  
+> **Note**: This repository does not include the setup instructions for Kafdrop UI, OpenSearch, or preparing the Python environment. Before writing the code, I ensured that my Python environment was ready, Kafdrop was up and running, and OpenSearch was properly configured.
+  
+This project demonstrates the use of Apache Kafka for real-time data streaming, with processing and storage facilitated by Spark and OpenSearch, respectively. Each component was implemented with Python for ease of integration and flexibility.
