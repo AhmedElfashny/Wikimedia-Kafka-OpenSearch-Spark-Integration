@@ -1,0 +1,1 @@
+# Wikimedia-Kafka-OpenSearch-Spark-Integration
