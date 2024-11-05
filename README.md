@@ -1,31 +1,51 @@
-# Wikimedia Kafka, OpenSearch, and Spark Streaming Integration
 
-This repository contains two main projects for streaming Wikimedia data using Kafka, processing it with Spark, and storing the data in OpenSearch.
+Here’s how the README.md file would look in markdown format for GitHub:
 
-## Projects Overview
+Wikimedia Kafka, OpenSearch, and Spark Streaming Integration
+This repository is a follow-up project from the course Apache Kafka Series - Learn Apache Kafka for Beginners v3 by Stephane Maarek, provided by Conduktor Kafkademy. In the course, two main projects were introduced, which I have implemented here using Python to connect with Kafka and OpenSearch.
 
-### 1. Kafka Producer and OpenSearch Consumer
-- **Kafka Producer**: Streams recent changes from Wikimedia using the Kafka producer.
-- **OpenSearch Consumer**: Reads messages from Kafka and indexes them in OpenSearch for searching and analytics.
+Projects Overview
+1. Kafka Producer and OpenSearch Consumer
+In this first project, we created a Kafka topic named wikimedia.recentchange, which consists of a single partition. The Kafka Producer streams recent changes from Wikimedia, and the OpenSearch Consumer reads these messages from Kafka and indexes them in OpenSearch for search and analytics.
 
-### 2. Spark Streaming with Kafka
-- **Spark Streaming Application**: Reads data from Kafka, processes it to create various aggregations (bot edits, website edits, and time series data), and streams the results to new Kafka topics.
+Producer: Uses Wikimedia API to stream data to Kafka topic wikimedia.recentchange.
+Consumer: Reads from wikimedia.recentchange topic and sends the data to an OpenSearch index for further exploration.
+I utilized Kafdrop as the Kafka UI to monitor the Kafka cluster and inspect topics.
 
-## Directory Structure
-- `wikimedia_kafka_producer.py`: Kafka Producer code to stream data from Wikimedia.
-- `wikimedia_opensearch_consumer.py`: Kafka Consumer code to consume data and store it in OpenSearch.
-- `wikimedia_spark_streaming.py`: Spark Streaming code to process data in real-time.
+2. Spark Streaming with Kafka
+In the second project, instead of using Kafka Streams as demonstrated in the course, I implemented Spark Streaming to connect to Kafka, process data, and create additional Kafka topics. This project includes real-time processing and aggregation of the data streamed from Wikimedia.
 
-## Screenshots
+Spark Streaming Application: Reads data from the wikimedia.recentchange Kafka topic and performs the following aggregations:
+Bot Edits: Aggregates bot edits over time, publishing results to a new topic wikimedia.stats.bots.
+Website Edits: Tracks edit counts per website, streaming results to wikimedia.stats.website.
+Time Series Edits: Aggregates edit counts by type over time, with output sent to wikimedia.stats.timeseries.
+Directory Structure
+wikimedia_kafka_producer.py: Kafka Producer code to stream data from Wikimedia to the Kafka topic.
+wikimedia_opensearch_consumer.py: Kafka Consumer code to consume data from Kafka and index it in OpenSearch.
+wikimedia_spark_streaming.py: Spark Streaming code to process data in real-time from Kafka and publish aggregated results back to Kafka.
+Screenshots
+Kafka Streams Application
+This diagram illustrates the Kafka Streams setup, with the Kafka Producer feeding data to the wikimedia.recentchange topic and Spark processing and producing aggregated results.
 
-### Kafka Streams Application
-![Kafka Streams Application](images/kafka_streams_application.png)
 
-### Wikimedia Producer Setup
-![Wikimedia Producer Setup](images/wikimedia_producer_setup.png)
 
-### Kafdrop Kafka Cluster Overview
-![Kafdrop Kafka Cluster Overview](images/kafdrop.png)
+Wikimedia Producer Setup
+The producer configuration for streaming data from Wikimedia into Kafka.
 
-### OpenSearch Dashboards
-![OpenSearch Dashboards](images/opensearch.png)
+
+
+Kafdrop Kafka Cluster Overview
+This shows the Kafka topics and partitions using Kafdrop as the Kafka UI.
+
+
+
+OpenSearch Dashboards
+A sample view from OpenSearch Dashboards showing indexed data from Wikimedia.
+
+
+
+Additional Notes
+Kafka and Python Integration: I used Python along with the Kafka connector to implement these projects.
+Kafdrop UI: Kafdrop provided an easy-to-use interface to view Kafka topics, partitions, and messages.
+This project demonstrates the use of Apache Kafka for real-time data streaming, with processing and storage facilitated by Spark and OpenSearch, respectively. Each component was implemented with Python for ease of integration and flexibility.
+
