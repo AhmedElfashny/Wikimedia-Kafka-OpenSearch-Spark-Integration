@@ -16,9 +16,9 @@ I utilized [Kafdrop](https://github.com/obsidiandynamics/kafdrop) as the Kafka U
 In the second project, instead of using Kafka Streams as demonstrated in the course, I implemented **Spark Streaming** to connect to Kafka, process data, and create additional Kafka topics. This project includes real-time processing and aggregation of the data streamed from Wikimedia.
 
 - **Spark Streaming Application**: Reads data from the `wikimedia.recentchange` Kafka topic and performs the following aggregations:
-  - **Bot Edits**: Aggregates bot edits over time, publishing results to a new topic `wikimedia.stats.bots`.
-  - **Website Edits**: Tracks edit counts per website, streaming results to `wikimedia.stats.website`.
-  - **Time Series Edits**: Aggregates edit counts by type over time, with output sent to `wikimedia.stats.timeseries`.
+  - **Bot Edits**: Aggregates bot edits over time and publishes results to a new topic `wikimedia.stats.bots`. This topic can be used to monitor bot activity on Wikimedia in real time, providing insights into the frequency and scale of bot-driven changes.
+  - **Website Edits**: Tracks the number of edits per website, streaming results to `wikimedia.stats.website`. This topic allows users to observe editing trends across different Wikimedia projects (like Wikipedia and Wikimedia Commons) and analyze which sites receive the most updates.
+  - **Time Series Edits**: Aggregates edit counts by type over time and sends output to `wikimedia.stats.timeseries`. This topic is useful for time-based analysis, enabling the identification of patterns and spikes in editing activity by different types, such as new articles or modifications.
 
 ## Directory Structure
 - `wikimedia_kafka_producer.py`: Kafka Producer code to stream data from Wikimedia to the Kafka topic.
@@ -50,5 +50,7 @@ A sample view from OpenSearch Dashboards showing indexed data from Wikimedia.
 ## Additional Notes
 - **Kafka and Python Integration**: I used Python along with the Kafka connector to implement these projects.
 - **Kafdrop UI**: Kafdrop provided an easy-to-use interface to view Kafka topics, partitions, and messages.
+  
+> **Note**: This repository does not include the setup instructions for Kafdrop UI, OpenSearch, or preparing the Python environment. Before writing the code, I ensured that my Python environment was ready, Kafdrop was up and running, and OpenSearch was properly configured.
   
 This project demonstrates the use of Apache Kafka for real-time data streaming, with processing and storage facilitated by Spark and OpenSearch, respectively. Each component was implemented with Python for ease of integration and flexibility.
